@@ -1,0 +1,28 @@
+[package]
+name = "rs-sudo"
+version = "0.1.0"
+edition = "2021"
+authors = ["Michael Englehorn <michael@englehorn.com>"]
+readme = "README.md"
+license = "MIT"
+
+[dependencies]
+argon2 = { version = "0.5.3", features = ["rand", "std"] }
+inquire = "0.7.5"
+
+[profile.release]
+opt-level = 3
+codegen-units = 1
+debug = 0
+strip = true
+overflow-checks = true
+lto = "fat"
+panic = "unwind"
+
+[[bin]]
+name = "hashgen"
+path = "src/hashgen.rs"
+
+[[bin]]
+name = "elevate"
+path = "src/elevate.rs"
